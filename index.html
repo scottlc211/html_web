@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧工匠科技有限公司 | 互联网+建筑数字化领航者</title>
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans SC"', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            900: '#0f172a', // Slate 900 base
+                            800: '#1e293b',
+                        },
+                        tech: {
+                            cyan: '#22d3ee', // Cyan 400
+                            blue: '#3b82f6',
+                        },
+                        action: {
+                            orange: '#f97316', // Orange 500
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Utilities */
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Scroll Reveal Base Styles */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Glassmorphism Card Utility */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Cursor for typewriter effect */
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: #22d3ee;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 border-b border-transparent">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center gap-2 cursor-pointer">
+                <div class="w-10 h-10 bg-gradient-to-br from-tech-cyan to-tech-blue rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-tech-cyan/20">
+                    <i class="fa-solid fa-cube"></i>
+                </div>
+                <div class="text-2xl font-bold tracking-wider text-white">
+                    智慧工匠<span class="text-tech-cyan text-sm ml-1 font-light tracking-widest opacity-80">TECH</span>
+                </div>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
+                <a href="#home" class="hover:text-white transition-colors">首页</a>
+                <a href="#features" class="hover:text-white transition-colors">全景方案</a>
+                <a href="#tech" class="hover:text-white transition-colors">智能硬件</a>
+                <a href="#about" class="hover:text-white transition-colors">关于我们</a>
+                <button class="bg-action-orange hover:bg-orange-600 text-white px-6 py-2.5 rounded-full shadow-lg shadow-orange-500/20 transition-all hover:scale-105 active:scale-95 font-bold">
+                    申请试用
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-btn" class="text-white text-2xl focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="md:hidden hidden bg-navy-900/95 backdrop-blur-xl absolute w-full border-t border-white/10">
+            <div class="flex flex-col p-6 space-y-4 text-center">
+                <a href="#home" class="text-gray-300 hover:text-white py-2">首页</a>
+                <a href="#features" class="text-gray-300 hover:text-white py-2">全景方案</a>
+                <a href="#tech" class="text-gray-300 hover:text-white py-2">智能硬件</a>
+                <button class="bg-action-orange text-white w-full py-3 rounded-lg font-bold">申请试用</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <!-- Abstract Background Elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+            <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-tech-blue/20 rounded-full blur-[120px] animate-pulse"></div>
+            <div class="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-tech-cyan/10 rounded-full blur-[100px]"></div>
+            <!-- Grid Pattern -->
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImEiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgNDBMMTQwIDBIYzAuNSAyLjUgMS41IDUgNS41IDVzNS0yLjUgNS41LTViIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNhKSIvPjwvc3ZnPg==')] opacity-30"></div>
+        </div>
+
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <!-- Text Content -->
+            <div class="space-y-6 z-10">
+                <div class="inline-block px-4 py-1.5 rounded-full border border-tech-cyan/30 bg-tech-cyan/10 text-tech-cyan text-xs font-bold tracking-widest uppercase mb-2 reveal">
+                    Smart Construction Platform
+                </div>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight reveal" style="transition-delay: 100ms;">
+                    “互联网+建筑” <br>
+                    <span class="text-gradient">数字化领航者</span>
+                </h1>
+                <p class="text-xl text-gray-400 h-16 md:h-8 reveal" style="transition-delay: 200ms;">
+                    <span id="typewriter-text"></span><span class="cursor"></span>
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 pt-4 reveal" style="transition-delay: 300ms;">
+                    <button class="bg-action-orange hover:bg-orange-600 text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-orange-500/25 transition-all hover:-translate-y-1 flex items-center justify-center gap-2">
+                        <i class="fa-regular fa-calendar-check"></i> 预约演示
+                    </button>
+                    <button class="border border-gray-600 hover:border-white hover:bg-white/5 text-white px-8 py-4 rounded-full font-bold transition-all flex items-center justify-center gap-2">
+                        了解更多 <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Graphic/Visual -->
+            <div class="relative hidden md:block animate-float reveal" style="transition-delay: 400ms;">
+                <div class="relative z-10 glass-card p-6 rounded-2xl shadow-2xl border-t border-l border-white/10">
+                    <!-- Mock Dashboard UI -->
+                    <div class="flex items-center gap-2 mb-4 border-b border-white/10 pb-4">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        <div class="text-xs text-gray-500 ml-auto">System Online</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-navy-900/50 p-4 rounded-lg">
+                            <div class="text-gray-400 text-xs mb-1">今日在场人数</div>
+                            <div class="text-tech-cyan text-2xl font-bold">1,248</div>
+                            <div class="w-full bg-gray-700 h-1 rounded-full mt-2"><div class="bg-tech-cyan w-[80%] h-1 rounded-full"></div></div>
+                        </div>
+                        <div class="bg-navy-900/50 p-4 rounded-lg">
+                            <div class="text-gray-400 text-xs mb-1">设备运行率</div>
+                            <div class="text-action-orange text-2xl font-bold">98.5%</div>
+                            <div class="w-full bg-gray-700 h-1 rounded-full mt-2"><div class="bg-action-orange w-[98%] h-1 rounded-full"></div></div>
+                        </div>
+                        <div class="bg-navy-900/50 p-4 rounded-lg col-span-2 flex items-center justify-between">
+                            <div>
+                                <div class="text-gray-400 text-xs">安全隐患排查</div>
+                                <div class="text-white font-bold">已处理 24 起 / 待处理 0 起</div>
+                            </div>
+                            <i class="fa-solid fa-shield-halved text-green-500 text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Decorative Elements behind card -->
+                <div class="absolute -z-10 top-[-20px] right-[-20px] w-full h-full border-2 border-tech-cyan/20 rounded-2xl"></div>
+                <div class="absolute -z-10 bottom-[-30px] left-[-30px] text-gray-800 text-[120px] opacity-20 font-bold leading-none">
+                    AI
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Value (Stats) -->
+    <section class="py-12 border-y border-white/5 bg-navy-800/30 backdrop-blur-sm relative z-20">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/10">
+                <div class="p-4 reveal">
+                    <div class="text-4xl font-bold text-white mb-2">5000万</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">注册资金 · 实力保障</div>
+                </div>
+                <div class="p-4 reveal" style="transition-delay: 100ms;">
+                    <div class="text-4xl font-bold text-white mb-2">软硬一体</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">Turnkey 解决方案</div>
+                </div>
+                <div class="p-4 reveal" style="transition-delay: 200ms;">
+                    <div class="text-4xl font-bold text-white mb-2">实时风控</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">AI 24小时智能监测</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Grid -->
+    <section id="features" class="py-24 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20 max-w-3xl mx-auto reveal">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white">智慧工地 <span class="text-tech-cyan">七大核心模块</span></h2>
+                <p class="text-gray-400 text-lg">基于物联网与大数据技术，将施工现场的“人、机、料、法、环”五大要素全方位数字化。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-card p-8 rounded-2xl group hover:bg-white/5 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(34,211,238,0.15)] reveal">
+                    <div class="w-14 h-14 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fa-solid fa-users-viewfinder text-2xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">人员管理</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">实名制考勤与AI人脸识别，彻底杜绝冒名顶替与无证上岗。</p>
+                    <a href="#" class="text-tech-cyan text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        查看详情 <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-8 rounded-2xl group hover:bg-white/5 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(34,211,238,0.15)] reveal" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 bg-orange-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fa-solid fa-helmet-safety text-2xl text-orange-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">施工管理</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">标准化施工流程监控，关键节点影像留痕，确保工序合规。</p>
+                    <a href="#" class="text-tech-cyan text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        查看详情 <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-8 rounded-2xl group hover:bg-white/5 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(34,211,238,0.15)] reveal" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 bg-purple-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fa-solid fa-truck-monster text-2xl text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">设备监控</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">塔吊、升降机黑匣子实时数据回传，危险操作自动报警。</p>
+                    <a href="#" class="text-tech-cyan text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        查看详情 <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="glass-card p-8 rounded-2xl group hover:bg-white/5 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(34,211,238,0.15)] reveal" style="transition-delay: 300ms;">
+                    <div class="w-14 h-14 bg-green-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fa-solid fa-seedling text-2xl text-green-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">绿色施工</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">PM2.5、噪音实时联动喷淋系统，打造环保文明工地。</p>
+                    <a href="#" class="text-tech-cyan text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        查看详情 <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Card 5 (Stacked Layout continuation) -->
+                <div class="glass-card p-8 rounded-2xl group hover:bg-white/5 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(34,211,238,0.15)] reveal">
+                    <div class="w-14 h-14 bg-red-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fa-solid fa-clipboard-check text-2xl text-red-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">质量安全</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">隐患随手拍，整改全闭环。让质量问题无处遁形。</p>
+                    <a href="#" class="text-tech-cyan text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        查看详情 <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="glass-card p-8 rounded-2xl group hover:bg-white/5 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(34,211,238,0.15)] reveal" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 bg-yellow-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fa-solid fa-boxes-stacked text-2xl text-yellow-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">物资管理</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">进出场智能称重，库存动态盘点，杜绝材料浪费。</p>
+                    <a href="#" class="text-tech-cyan text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        查看详情 <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Card 7 (Spanning 2 cols on Large) -->
+                <div class="glass-card p-8 rounded-2xl group hover:bg-white/5 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(34,211,238,0.15)] md:col-span-2 reveal" style="transition-delay: 200ms;">
+                    <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+                        <div class="w-14 h-14 bg-cyan-500/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shrink-0">
+                            <i class="fa-solid fa-chart-line text-2xl text-tech-cyan"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">进度管理 · 挂图作战</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-4">BIM模型与进度计划关联，4D模拟施工过程，可视化预警进度滞后风险，辅助决策。</p>
+                            <a href="#" class="text-tech-cyan text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                                深入了解进度引擎 <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Highlights -->
+    <section id="tech" class="py-24 bg-navy-800/20 relative overflow-hidden">
+        <!-- Decoration -->
+        <div class="absolute right-0 top-1/4 w-1/3 h-full bg-tech-blue/5 skew-x-12 pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 space-y-32">
+            
+            <!-- Highlight 1: AI & AR -->
+            <div class="flex flex-col md:flex-row items-center gap-16 reveal">
+                <div class="w-full md:w-1/2">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl group">
+                        <!-- Abstract Visual Representation of AR -->
+                        <div class="bg-slate-800 aspect-video flex items-center justify-center relative overflow-hidden">
+                             <div class="absolute inset-0 bg-gradient-to-t from-navy-900 to-transparent opacity-80 z-10"></div>
+                             <i class="fa-solid fa-glasses text-9xl text-white/5 absolute"></i>
+                             <div class="relative z-20 text-center">
+                                 <div class="w-20 h-20 mx-auto bg-tech-cyan/20 rounded-full flex items-center justify-center mb-4 border border-tech-cyan/50 animate-pulse">
+                                    <i class="fa-solid fa-vr-cardboard text-3xl text-tech-cyan"></i>
+                                 </div>
+                                 <div class="text-white font-mono text-sm">VR/AR RENDERING ENGINE</div>
+                             </div>
+                             <!-- Scanning effect -->
+                             <div class="absolute top-0 left-0 w-full h-1 bg-tech-cyan/50 shadow-[0_0_20px_rgba(34,211,238,0.8)] animate-[scan_3s_linear_infinite]"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 space-y-6">
+                    <div class="text-tech-cyan font-bold tracking-wider uppercase">Future Tech</div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">AI 智眼 & VR 沉浸式体验</h2>
+                    <p class="text-gray-400 leading-relaxed">
+                        利用计算机视觉技术，智能识别未戴安全帽、反光衣等违规行为。结合 VR/AR 技术，实现安全教育沉浸式体验与施工节点的可视化交底，将图纸变成立体模型投射于现实。
+                    </p>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-tech-cyan"></i> 毫秒级危险识别预警</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-tech-cyan"></i> 1:1 现场模型还原</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-tech-cyan"></i> 远程全景巡检</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Highlight 2: BIM -->
+            <div class="flex flex-col md:flex-row-reverse items-center gap-16 reveal">
+                <div class="w-full md:w-1/2">
+                     <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                        <!-- Abstract Visual Representation of BIM -->
+                        <div class="bg-slate-800 aspect-video flex items-center justify-center relative overflow-hidden">
+                             <div class="absolute inset-0 bg-gradient-to-b from-navy-900 to-transparent opacity-60 z-10"></div>
+                             <div class="grid grid-cols-4 grid-rows-4 gap-4 opacity-10 absolute inset-0 rotate-12 scale-150">
+                                <div class="bg-white/20 rounded"></div><div class="bg-white/20 rounded"></div>
+                                <div class="bg-white/20 rounded"></div><div class="bg-white/20 rounded"></div>
+                                <div class="bg-white/20 rounded"></div><div class="bg-white/20 rounded"></div>
+                                <div class="bg-white/20 rounded"></div><div class="bg-white/20 rounded"></div>
+                             </div>
+                             <div class="relative z-20 text-center">
+                                 <div class="text-6xl text-white font-bold mb-2">BIM+</div>
+                                 <div class="text-tech-blue font-mono">Digital Twin Platform</div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 space-y-6">
+                    <div class="text-tech-blue font-bold tracking-wider uppercase">Data Core</div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">BIM 可视化数据中台</h2>
+                    <p class="text-gray-400 leading-relaxed">
+                        打破数据孤岛，以 BIM 模型为载体，集成设计、施工、运维全过程数据。通过数字孪生技术，实现物理工地与数字工地的实时映射。
+                    </p>
+                    <div class="flex gap-4 pt-4">
+                        <div class="bg-white/5 p-4 rounded-lg border border-white/10 text-center w-32">
+                            <div class="text-2xl font-bold text-white">30%</div>
+                            <div class="text-xs text-gray-400">效率提升</div>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-lg border border-white/10 text-center w-32">
+                            <div class="text-2xl font-bold text-white">15%</div>
+                            <div class="text-xs text-gray-400">成本节约</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-tech-blue/20 to-tech-cyan/20"></div>
+        <div class="container mx-auto px-6 relative z-10 text-center reveal">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">准备好升级您的智慧工地了吗？</h2>
+            <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">立即联系我们，获取专属数字化转型方案。前50名咨询客户可享免费现场勘测服务。</p>
+            <button class="bg-white text-navy-900 px-10 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors shadow-[0_0_40px_rgba(255,255,255,0.3)]">
+                开启数字化之旅
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="about" class="bg-black py-16 border-t border-white/10 text-gray-400 text-sm">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2 text-white font-bold text-xl">
+                        <i class="fa-solid fa-cube text-tech-cyan"></i> 智慧工匠
+                    </div>
+                    <p>致力于成为全球领先的建筑产业互联网平台服务商。</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">解决方案</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-tech-cyan transition-colors">智慧工地</a></li>
+                        <li><a href="#" class="hover:text-tech-cyan transition-colors">BIM 咨询</a></li>
+                        <li><a href="#" class="hover:text-tech-cyan transition-colors">劳务实名制</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">联系我们</h4>
+                    <ul class="space-y-2">
+                        <li><i class="fa-solid fa-phone mr-2"></i> 400-123-4567</li>
+                        <li><i class="fa-solid fa-envelope mr-2"></i> contact@smartcraftsman.com</li>
+                        <li><i class="fa-solid fa-location-dot mr-2"></i> 北京市海淀区科技园</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">关注我们</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-tech-cyan hover:text-navy-900 transition-all"><i class="fa-brands fa-weixin"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-tech-cyan hover:text-navy-900 transition-all"><i class="fa-brands fa-weibo"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div>&copy; 2026 智慧工匠科技有限公司 版权所有</div>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white">隐私政策</a>
+                    <a href="#" class="hover:text-white">服务条款</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Scroll Reveal Animation (Intersection Observer)
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Optional: Stop observing once revealed
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.15, // Trigger when 15% visible
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // 2. Typewriter Effect
+            const textElement = document.getElementById('typewriter-text');
+            const phrases = [
+                "基于AI与大数据的全过程管理平台",
+                "赋能工程全生命周期",
+                "让建筑更智慧，让施工更安全"
+            ];
+            let phraseIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let typeSpeed = 100;
+
+            function typeWriter() {
+                const currentPhrase = phrases[phraseIndex];
+                
+                if (isDeleting) {
+                    textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                    charIndex--;
+                    typeSpeed = 50; // Deleting speed
+                } else {
+                    textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                    charIndex++;
+                    typeSpeed = 100; // Typing speed
+                }
+
+                if (!isDeleting && charIndex === currentPhrase.length) {
+                    isDeleting = true;
+                    typeSpeed = 2000; // Pause at end
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    typeSpeed = 500; // Pause before new phrase
+                }
+
+                setTimeout(typeWriter, typeSpeed);
+            }
+            // Start typewriter
+            setTimeout(typeWriter, 1000);
+
+
+            // 3. Navbar Sticky Effect
+            const navbar = document.getElementById('navbar');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('bg-navy-900/95', 'backdrop-blur-md', 'shadow-lg', 'border-b', 'border-white/10');
+                    navbar.classList.remove('py-4', 'border-transparent');
+                    navbar.classList.add('py-2');
+                } else {
+                    navbar.classList.remove('bg-navy-900/95', 'backdrop-blur-md', 'shadow-lg', 'border-b', 'border-white/10', 'py-2');
+                    navbar.classList.add('py-4', 'border-transparent');
+                }
+            });
+
+            // 4. Mobile Menu Toggle
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                // Change icon
+                const icon = btn.querySelector('i');
+                if (menu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                }
+            });
+
+            // Close mobile menu on link click
+            menu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                    btn.querySelector('i').classList.remove('fa-xmark');
+                    btn.querySelector('i').classList.add('fa-bars');
+                });
+            });
+        });
+        
+        // Add custom keyframes for scanning effect dynamically
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = `
+            @keyframes scan {
+                0% { top: 0%; opacity: 0; }
+                10% { opacity: 1; }
+                90% { opacity: 1; }
+                100% { top: 100%; opacity: 0; }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+    </script>
+</body>
+</html>
